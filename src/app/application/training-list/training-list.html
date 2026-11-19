@@ -1,0 +1,12 @@
+<h2>Liste des formations avec composants enfant</h2>
+<button type="button" (click)="onAddTraining()">Ajouter</button>
+<ul>
+  @for (training of trainingCatalog(); track $index) {
+    <li>
+      <app-training-item [training]="training" [position]="$index+1"
+        (deleteTraining)="onRemoveTraining($event)"
+        (trainingChange)="onUpdateTraining($event)" />
+    </li>
+  }
+</ul>
+<pre>{{ trainingCatalog() | json }}</pre>

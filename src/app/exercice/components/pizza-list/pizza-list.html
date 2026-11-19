@@ -1,0 +1,11 @@
+<h2>Liste des Pizzas</h2>
+<ul class="list-group">
+  @for (pizza of pizzasList(); track pizza.id) {
+    <li class="list-group-item" [class.bg-warning]="!pizza.vegetarian">
+      <xxx-pizza-item [pizza]="pizza"
+        (deletePizza)="onRemovePizza($event)"
+        (pizzaChange)="onUpdatePizza($event)" />
+    </li>
+  }
+</ul>
+<pre>{{ pizzasList() | json }}</pre>

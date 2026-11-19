@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-between align-items-center">
+  <div>
+    <div class="d-flex align-items-center">
+      <img [src]="pizza().image" width="50" height="50" class="rounded-circle">
+      <span class="badge text-bg-dark m-4">{{ pizza().name }}</span>
+      @if (pizza().vegetarian) {
+        <span class="text-success fw-bold">Pizza végétarienne</span>
+      }
+    </div>
+
+    <button type="button" class="btn btn-link" (click)="onToggleComments()">
+      Afficher les commentaires
+    </button>
+
+    @if (showComments()) {
+      <ul>
+        @for (c of pizza().comments; track c.id) {
+          <li>
+            <xxx-pizza-comment [comment]="c" (deleteComment)="onDeleteComment($event)" />
+          </li>
+        } @empty {
+          <li><div>Aucun commentaire</div></li>
+        }
+      </ul>
+    }
+  </div>
+
+  <div class="d-flex align-items-center">
+    <span class="fw-bold me-2">Prix: {{ pizza().price | number:'2.3-3' }} DT</span>
+    <button type="button" class="btn btn-dark" (click)="onDelete()">Supprimer</button>
+  </div>
+</div>
